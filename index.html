@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Languages You Know App by Vishal Choudhary</title>
+    <style>
+        h1 { font-size: 40px; text-align: center; }
+        body { background-color: linen;text-align: center; }
+        input[type=checkbox] { width: 2%; height: 0.7em; }
+    </style>
+</head>
+<body>
+    <h1>Languages You Know App</h1>
+    
+    <form onsubmit="show()">
+        <input type="text" id="name" placeholder="Enter Name" />
+        <br/><br/>
+        
+        <input type="checkbox" id="py" /> Python
+        <input type="checkbox" id="ja" /> Java
+        <input type="checkbox" id="js" /> JavaScript
+        <br/><br/>
+        
+        <input type="submit" />
+    </form>
+    
+    <h2 id="msg"></h2>
+    
+    <script>
+        function show() {
+            event.preventDefault();
+            
+            let name = document.getElementById("name");
+            let py = document.getElementById("py");
+            let ja = document.getElementById("ja");
+            let js = document.getElementById("js");
+            let msg = document.getElementById("msg");
+            
+            if (name.value === "") {
+                alert("Name cannot be empty!");
+                msg.innerHTML = "";
+                name.focus();
+                return;
+            }
+            
+            if (!name.value.match("^[A-Za-z]+$")) {
+                alert("Name can contain only alphabets!");
+                name.value = "";
+                msg.innerHTML = "";
+                name.focus();
+                return;
+            }
+            
+            let language = "";
+            if (py.checked)
+                language = language + " Python ";
+            if (ja.checked)
+                language = language + " Java ";
+            if (js.checked)
+                language = language + " Javascript ";
+            
+            if (language === "")
+                language = "I don't know any language";
+            
+            let ans = "Name = " + name.value + " , Languages = " + language;
+            msg.innerHTML = ans;
+        }
+    </script>
+</body>
+</html>
